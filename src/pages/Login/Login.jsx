@@ -26,7 +26,6 @@ const Login = () => {
       history.push('/');
     },
     onError(error) {
-      console.log(error.graphQLErrors[0].extensions.exception.errors);
       setRegError(error.graphQLErrors[0].extensions.exception.errors);
     },
   });

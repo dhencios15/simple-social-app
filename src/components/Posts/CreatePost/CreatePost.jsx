@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 
 import { yupResolver } from '@hookform/resolvers';
 import { CREATE_POST_MUTATION } from 'graphql/mutations/post';
-import { FETCH_POST_QUERY } from 'graphql/queries/getPost';
+import { FETCH_POSTS_QUERY } from 'graphql/queries/getPost';
 import { schemaPost } from 'utils/postValidation';
 
 const CreatePost = () => {
@@ -19,7 +19,7 @@ const CreatePost = () => {
         query: FETCH_POST_QUERY,
       });
       data.getPosts = [result.data.createPost, ...data.getPosts];
-      proxy.writeQuery({ query: FETCH_POST_QUERY, data });
+      proxy.writeQuery({ query: FETCH_POSTS_QUERY, data });
     },
   });
 
