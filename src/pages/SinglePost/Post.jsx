@@ -118,24 +118,26 @@ const Post = ({ match }) => {
               getPost.comments.map((comment) => (
                 <div
                   key={comment.id}
-                  className=' w-full my-3 p-4 border border-gray-400 rounded-lg'
+                  className='flex-col w-full my-3 p-4 border border-gray-400 rounded-lg'
                 >
-                  <div className='flex items-center '>
+                  <div className='flex flex-row'>
                     <img
                       className='w-5 h-5 mr-1 rounded-full'
                       src={`https://api.adorable.io/avatars/106/${comment.username}@adorable.png`}
                       alt='img'
                     ></img>
-                    <h2 className='text-sm text-gray-400 font-medium title-font '>
+                    <h2 className='text-sm text-gray-400 font-medium title-font'>
                       {comment.username.toUpperCase()}
                     </h2>
                   </div>
-                  <span className='text-xs text-gray-500 mb-2'>
-                    {postedTime(comment.createdAt)}
-                  </span>
-                  <p className='leading-relaxed text-base text-gray-300'>
-                    {comment.body}
-                  </p>
+                  <div className='flex flex-col justify-start'>
+                    <p className='text-xs text-gray-500 mb-2'>
+                      {postedTime(comment.createdAt)}
+                    </p>
+                    <p className='leading-relaxed text-gray-300'>
+                      {comment.body}
+                    </p>
+                  </div>
                 </div>
               ))}
           </div>
