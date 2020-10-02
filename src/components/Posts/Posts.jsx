@@ -66,7 +66,9 @@ const Posts = ({ post, user, onLikePost, liked }) => {
             ></img>
           </div>
           <p className='leading-relaxed mb-3 text-gray-400 text-sm'>
-            {post.body.substring(0, 95)}...
+            {post.body.length > 94
+              ? `${post.body.substring(0, 95)}...`
+              : post.body}
           </p>
           <div className='flex items-center flex-wrap '>
             <Link
