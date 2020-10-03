@@ -22,7 +22,7 @@ const Navbar = () => {
       history.push('/');
     },
     onError() {
-      history.push('/login');
+      history.push('/register');
     },
   });
 
