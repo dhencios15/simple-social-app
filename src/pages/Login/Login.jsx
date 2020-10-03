@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { NavLink, useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { useMutation } from '@apollo/react-hooks';
 import { useForm } from 'react-hook-form';
 
@@ -8,8 +8,9 @@ import { yupResolver } from '@hookform/resolvers';
 import { AuthContext } from 'context/authContext';
 import { LOGIN_USER } from 'graphql/mutations/auth';
 
-import BaseInput from 'components/shared/BaseInput';
+import AuthHero from 'components/AuthHero';
 import ErrorToast from 'layouts/ErrorToast/ErrorToast';
+import BaseInput from 'components/shared/BaseInput';
 
 const Login = () => {
   const history = useHistory();
@@ -36,17 +37,18 @@ const Login = () => {
   };
 
   return (
-    <div className='container px-5 py-10 mx-auto flex flex-col'>
-      <div className='lg:w-4/6 mx-auto justify-center items-center'>
+    <section className='text-gray-700 body-font relative'>
+      <div className='container px-5 py-24 mx-auto flex sm:flex-no-wrap flex-wrap'>
+        <AuthHero />
         <form
           autoComplete='false'
           onSubmit={handleSubmit(onSubmit)}
-          className='container mx-auto md:w-1/2 flex flex-col w-full md:py-8 mt-8 md:mt-0 rounded-lg p-10 shadow-md'
+          className='lg:w-1/3 md:w-1/2 bg-transparent shadow-xl p-4 border border-gray-700 rounded-lg flex flex-col md:ml-auto w-full md:py-8 mt-8 md:mt-0'
         >
-          {Object.keys(regError).length > 0 && <ErrorToast errors={regError} />}
           <h2 className='text-gray-300 text-lg mb-1 font-medium title-font'>
             SIGN IN
           </h2>
+          {Object.keys(regError).length > 0 && <ErrorToast errors={regError} />}
           <p className='leading-relaxed mb-5 text-gray-400'>
             Post-ironic portland shabby chic echo park, banjo fashion axe
           </p>
@@ -81,17 +83,14 @@ const Login = () => {
             {loading ? 'LOADING...' : 'SIGN IN'}
           </button>
           <p className='text-xs text-gray-400 mt-3'>
-            Don't have account?
-            <NavLink
-              className='ml-2 font-semibold text-gray-300'
-              to='/register'
-            >
-              SIGN UP
-            </NavLink>
+            Don't have an account ?
+            <Link to='/register' className='font-bold'>
+              Sign up
+            </Link>
           </p>
         </form>
       </div>
-    </div>
+    </section>
   );
 };
 

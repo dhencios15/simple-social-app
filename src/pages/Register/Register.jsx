@@ -1,5 +1,6 @@
 import React, { useContext, useState } from 'react';
-import { NavLink, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
+
 import { useForm } from 'react-hook-form';
 import { useMutation } from '@apollo/react-hooks';
 import { yupResolver } from '@hookform/resolvers';
@@ -8,6 +9,7 @@ import { schemaRegister } from 'utils/authValidation';
 import { AuthContext } from 'context/authContext';
 import { REGISTER_USER } from 'graphql/mutations/auth';
 
+import AuthHero from 'components/AuthHero';
 import BaseInput from 'components/shared/BaseInput';
 import ErrorToast from 'layouts/ErrorToast/ErrorToast';
 
@@ -37,12 +39,13 @@ const Register = () => {
   };
 
   return (
-    <div className='container px-5 py-10 mx-auto flex flex-col'>
-      <div className='lg:w-4/6 mx-auto justify-center items-center'>
+    <section className='text-gray-700 body-font relative'>
+      <div className='container px-5 py-24 mx-auto flex sm:flex-no-wrap flex-wrap'>
+        <AuthHero />
         <form
           autoComplete='false'
           onSubmit={handleSubmit(onSubmit)}
-          className='container mx-auto md:w-1/2 flex flex-col w-full md:py-8 mt-8 md:mt-0 rounded-lg p-10 shadow-md'
+          className='lg:w-1/3 md:w-1/2 bg-transparent shadow-xl p-4 border border-gray-700 rounded-lg flex flex-col md:ml-auto w-full md:py-8 mt-8 md:mt-0'
         >
           {Object.keys(regError).length > 0 && <ErrorToast errors={regError} />}
           <h2 className='text-gray-300 text-lg mb-1 font-medium title-font'>
@@ -100,15 +103,15 @@ const Register = () => {
           >
             {loading ? 'LOADING...' : 'SIGN UP'}
           </button>
-          <p className='text-xs text-gray-400 mt-3'>
-            Already have an account?
-            <NavLink className='ml-2 font-semibold text-gray-300' to='/login'>
-              SIGN IN
-            </NavLink>
-          </p>
+          {/* <p className='text-xs text-gray-400 mt-3'>
+            Already have an account ?
+            <Link to='/login' className='font-bold'>
+              Sign In
+            </Link>
+          </p> */}
         </form>
       </div>
-    </div>
+    </section>
   );
 };
 

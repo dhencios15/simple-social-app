@@ -1,24 +1,26 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import Navbar from 'layouts/Navbar';
-import Post from 'pages/SinglePost';
-import Home from 'pages/Home';
-import Login from 'pages/Login';
-import Register from 'pages/Register';
-import AuthRoute from 'utils/AuthRoute';
+
 import { AuthProvider } from 'context/authContext';
+import AuthRoute from 'utils/AuthRoute';
+
+import Home from './pages/Home';
+import AccessibleNavigationAnnouncer from 'components/AccessibleNavigationAnnouncer';
+import Navbar from 'layouts/Navbar';
+import Register from 'pages/Register';
+import SinglePost from 'pages/Posts/SinglePost';
 
 function App() {
   return (
     <AuthProvider>
-      <div className='bg-lightslategray-800 min-h-screen'>
+      <div className='min-h-screen m-4 bg-gray-800 divide-y rounded-lg shadow-lg divide-gray-700'>
         <Router>
           <Navbar />
+          <AccessibleNavigationAnnouncer />
           <Switch>
-            <Route exact path='/' component={Home} />
-            <Route exact path='/post/:postId' component={Post} />
-            <AuthRoute exact path='/login' component={Login} />
             <AuthRoute exact path='/register' component={Register} />
+            <Route exact path='/' component={Home} />
+            <Route exact path='/post/:postId' component={SinglePost} />
           </Switch>
         </Router>
       </div>
