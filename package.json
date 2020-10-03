@@ -1,5 +1,5 @@
 {
-  "name": "client",
+  "name": "social-like-fb",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -13,23 +13,23 @@
     "apollo-link-context": "^1.0.20",
     "apollo-link-http": "^1.5.17",
     "classnames": "^2.2.6",
-    "dayjs": "^1.8.36",
+    "dayjs": "^1.9.1",
     "graphql": "^15.3.0",
     "graphql-tag": "^2.11.0",
-    "jwt-decode": "^3.0.0-beta.2",
+    "jwt-decode": "^3.0.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-hook-form": "^6.8.3",
+    "react-hook-form": "^6.9.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.3",
+    "tailwindcss": "^1.8.10",
     "yup": "^0.29.3"
   },
   "scripts": {
-    "build:tailwind": "tailwind build src/assets/css/tailwind.css -o src/assets/css/tailwind.output.css",
-    "watch:tailwind": "chokidar 'src/**/**/*.css' 'src/**/**/*.scss' --ignore src/assets/css/tailwind.output.css -c 'npm run build:tailwind'",
-    "start": "npm-run-all build:tailwind --parallel watch:tailwind start:react",
-    "start:react": "react-scripts start",
-    "prebuild": "run-s build:tailwind",
+    "build:tailwind": "tailwindcss build src/assets/index.css -o src/assets/tailwind.output.css",
+    "prestart": "npm run build:tailwind",
+    "prebuild": "npm run build:tailwind",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -48,11 +48,6 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "devDependencies": {
-    "chokidar-cli": "^2.1.0",
-    "npm-run-all": "^4.1.5",
-    "tailwindcss": "^1.8.10"
   },
   "proxy": "https://serene-taiga-45508.herokuapp.com/"
 }
