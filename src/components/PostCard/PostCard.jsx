@@ -5,7 +5,7 @@ import { postedTime } from 'utils/dateFormat';
 
 const PostCard = ({ post }) => {
   return (
-    <div className='xl:w-1/4 md:w-1/2 p-4'>
+    <div className='xl:w-1/4 md:w-1/2 p-4 transform duration-300 hover:scale-105'>
       <div className='bg-gray-700 p-6 rounded-lg shadow-lg'>
         <img
           className='h-40 rounded w-full object-cover object-center mb-6'
