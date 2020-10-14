@@ -1,7 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { useMutation, useQuery } from '@apollo/react-hooks';
-
-import { LIKE_POST_MUTATION } from 'graphql/mutations/post';
+import { useQuery } from '@apollo/react-hooks';
 import { FETCH_POSTS_QUERY } from 'graphql/queries/getPost';
 import { AuthContext } from 'context/authContext';
 
@@ -12,12 +10,7 @@ import CreatePost from 'components/CreatePost';
 const Posts = () => {
   const [createPost, setCreatePost] = useState(false);
   const { loading, data } = useQuery(FETCH_POSTS_QUERY);
-  const [likePost] = useMutation(LIKE_POST_MUTATION);
   const { user } = useContext(AuthContext);
-
-  const onLikePost = (postId) => {
-    likePost({ variables: { postId } });
-  };
 
   if (loading) return <ThemedSuspense />;
   const { getPosts } = data;
@@ -36,17 +29,7 @@ const Posts = () => {
 
       <div className='flex flex-wrap -m-4'>
         {getPosts.map((post) => (
-          <PostCard
-            key={post.id}
-            liked={
-              user && post.likes.find((like) => like.username === user.username)
-                ? true
-                : false
-            }
-            post={post}
-            onLikePost={onLikePost}
-            user={user}
-          />
+          <PostCard key={post.id} post={post} />
         ))}
       </div>
     </div>

@@ -8,6 +8,7 @@ import { FETCH_POST_QUERY } from 'graphql/queries/getPost';
 import { AuthContext } from 'context/authContext';
 import { displayDate, postedTime } from 'utils/dateFormat';
 import { schemaPost } from 'utils/postValidation';
+import LikeButton from 'components/LikeButton';
 
 const SinglePost = ({ match }) => {
   const { register, handleSubmit, errors } = useForm({
@@ -63,20 +64,7 @@ const SinglePost = ({ match }) => {
               {getPost.body}
             </p>
             <div className='flex items-center border-t-2 pt-2'>
-              <button className='text-gray-400 inline-flex items-center hover:text-gray-300 mr-3'>
-                <svg
-                  className='w-4 h-4 mr-1'
-                  stroke='currentColor'
-                  strokeWidth='2'
-                  fill='none'
-                  strokeLinecap='round'
-                  strokeLinejoin='round'
-                  viewBox='0 0 24 24'
-                >
-                  <path d='M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5'></path>
-                </svg>
-                {getPost.likeCount}
-              </button>
+              <LikeButton postId={postId} post={getPost} />
               <button className='text-gray-400 inline-flex items-center hover:text-gray-300'>
                 <svg
                   className='w-4 h-4 mr-1'
